@@ -52,6 +52,12 @@ def nilai_maks_min():
 
 # Streamlit UI
 st.title("📚 Aplikasi Data Siswa (CRUD + Pencarian + Statistik)")
+st.title("📚 Aplikasi Data Siswa")
+
+st.markdown("Selamat datang di aplikasi pengelolaan data siswa.")
+st.info("Gunakan menu di sebelah kiri untuk menambah, melihat, atau mengelola data siswa.")
+st.caption("Data disimpan secara lokal di file `data_siswa.csv`.")
+
 menu = st.sidebar.selectbox("Menu", ["Lihat Data", "Tambah Data", "Edit Data", "Hapus Data", "Cari Siswa", "Nilai Max/Min"])
 
 if menu == "Lihat Data":
