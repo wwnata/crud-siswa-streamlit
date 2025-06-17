@@ -74,7 +74,8 @@ def nilai_maks_min():
 st.title("📚 Aplikasi Data Siswa")
 
 st.markdown("Selamat datang di aplikasi pengelolaan data siswa.")
-st.info("Gunakan menu di sebelah kiri untuk menambah, melihat, atau mengelola data siswa.")
+st.info("Gunakan menu di sebelah kiri untuk menambah, melihat, atau mengelola data siswa,
+dan bisa klik pada bagian kolom untuk mengurutkan data.")
 st.caption("Data disimpan secara lokal di file `data_siswa.csv`.")
 
 menu = st.sidebar.selectbox("Menu", ["Lihat Data", "Tambah Data", "Edit Data", "Hapus Data", "Cari Siswa", "Nilai Max/Min"])
