@@ -76,6 +76,7 @@ st.title("📚 Aplikasi Data Siswa")
 st.markdown("Selamat datang di aplikasi pengelolaan data siswa.")
 st.info("Gunakan menu di sebelah kiri untuk menambah, melihat, atau mengelola data siswa,dan bisa klik pada bagian kolom untuk mengurutkan data.")
 st.caption("Data disimpan secara lokal di file `data_siswa.csv`.")
+st.caption("Created by Sandi Winata, Harlan and Gilang")
 with st.sidebar:
     st.markdown("---")
     st.caption("Created by Sandi Winata, Harlan and Gilang")
