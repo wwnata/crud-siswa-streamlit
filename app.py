@@ -57,11 +57,16 @@ def nilai_maks_min():
         st.info("Tidak ada data siswa.")
         return
 
-    nilai_cols = ["Matematika", "Bhs_Indonesia", "IPA", "IPS"]
+    # Kolom nilai (dalam CSV kamu semuanya diawali dengan "Nilai_")
+    nilai_cols = [col for col in df.columns if col.startswith("Nilai_")]
+
+    if not nilai_cols:
+        st.warning("Tidak ditemukan kolom nilai.")
+        return
 
     st.subheader("📊 Nilai Tertinggi & Terendah Setiap Mata Pelajaran")
     for col in nilai_cols:
-        st.markdown(f"**📝 {col.replace('_', ' ')}**")
+        st.markdown(f"**📝 {col.replace('Nilai_', '').replace('_', ' ')}**")
         st.write(f"- 🔼 Tertinggi: {df[col].max()}")
         st.write(f"- 🔽 Terendah : {df[col].min()}")
 
