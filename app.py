@@ -9,7 +9,7 @@ def load_data():
     if os.path.exists(FILE_PATH):
         return pd.read_csv(FILE_PATH)
     else:
-        return pd.DataFrame(columns=["NIS", "Nama", "Jenis_Kelamin", "Matematika", "Bhs_Indonesia", "IPA", "IPS"])
+        return pd.DataFrame(columns=["NIS", "Nama", "Jenis Kelamin", "Matematika", "Indonesia", "IPA", "IPS"])
 
 # Fungsi untuk menyimpan data
 def save_data(df):
