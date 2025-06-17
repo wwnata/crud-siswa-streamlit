@@ -8,7 +8,7 @@ def load_data():
     if os.path.exists(FILE_PATH):
         return pd.read_csv(FILE_PATH)
     else:
-        return pd.DataFrame(columns=["NIS", "Nama", "Nilai_Matematika",	"Nilai_Bahasa_Indonesia",	"Nilai_IPA",	"Nilai_IPS"])
+        return pd.DataFrame(columns=["NIS", "Nama", "Matematika",	"Indonesia",	"IPA",	"IPS"])
 
 def save_data(df):
     df.to_csv(FILE_PATH, index=False)
@@ -47,16 +47,16 @@ def nilai_maks_min():
         st.info("Tidak ada data siswa.")
         return
 
-    # Ambil kolom nilai (numerik), kecuali NIS dan Nama
-    nilai_cols = df.select_dtypes(include='number').columns.tolist()
+    # Kolom nilai (dalam CSV kamu semuanya diawali dengan "Nilai_")
+    nilai_cols = [col for col in df.columns if col.startswith("Nilai_")]
 
     if not nilai_cols:
-        st.warning("Tidak ada kolom nilai yang terdeteksi.")
+        st.warning("Tidak ditemukan kolom nilai.")
         return
 
     st.subheader("📊 Nilai Tertinggi & Terendah Setiap Mata Pelajaran")
     for col in nilai_cols:
-        st.markdown(f"**📝 {col}**")
+        st.markdown(f"**📝 {col.replace('Nilai_', '').replace('_', ' ')}**")
         st.write(f"- 🔼 Tertinggi: {df[col].max()}")
         st.write(f"- 🔽 Terendah : {df[col].min()}")
 
