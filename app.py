@@ -8,7 +8,7 @@ def load_data():
     if os.path.exists(FILE_PATH):
         return pd.read_csv(FILE_PATH)
     else:
-        return pd.DataFrame(columns=["NIS", "Nama", "Matematika", "Bahasa_Indonesia", "IPA", "IPS"])
+        return pd.DataFrame(columns=["NIS", "Nama", "Nilai_Matematika",	"Nilai_Bahasa_Indonesia",	"Nilai_IPA",	"Nilai_IPS"])
 
 def save_data(df):
     df.to_csv(FILE_PATH, index=False)
@@ -62,7 +62,6 @@ def nilai_maks_min():
 
 
 # Streamlit UI
-st.title("📚 Aplikasi Data Siswa (CRUD + Pencarian + Statistik)")
 st.title("📚 Aplikasi Data Siswa")
 
 st.markdown("Selamat datang di aplikasi pengelolaan data siswa.")
