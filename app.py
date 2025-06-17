@@ -42,13 +42,24 @@ def search_student(keyword):
 
 def nilai_maks_min():
     df = load_data()
-    subjects = ["Matematika", "Bahasa_Indonesia", "IPA", "IPS"]
-    st.subheader("📊 Nilai Tertinggi & Terendah")
-    for subject in subjects:
-        if not df.empty:
-            st.write(f"**{subject}**")
-            st.write(f"- Tertinggi: {df[subject].max()}")
-            st.write(f"- Terendah : {df[subject].min()}")
+
+    if df.empty:
+        st.info("Tidak ada data siswa.")
+        return
+
+    # Ambil kolom nilai (numerik), kecuali NIS dan Nama
+    nilai_cols = df.select_dtypes(include='number').columns.tolist()
+
+    if not nilai_cols:
+        st.warning("Tidak ada kolom nilai yang terdeteksi.")
+        return
+
+    st.subheader("📊 Nilai Tertinggi & Terendah Setiap Mata Pelajaran")
+    for col in nilai_cols:
+        st.markdown(f"**📝 {col}**")
+        st.write(f"- 🔼 Tertinggi: {df[col].max()}")
+        st.write(f"- 🔽 Terendah : {df[col].min()}")
+
 
 # Streamlit UI
 st.title("📚 Aplikasi Data Siswa (CRUD + Pencarian + Statistik)")
