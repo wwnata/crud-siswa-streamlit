@@ -16,13 +16,13 @@ def save_data(df):
     df.to_csv(FILE_PATH, index=False)
 
 # Fungsi untuk menambahkan siswa
-def add_student(nis, nama, jk, mat, bindo, ipa, ips):
+def add_student(*args):
     df = load_data()
+    nis = args[0]
     if nis in df["NIS"].astype(str).values:
         st.warning("NIS sudah terdaftar!")
         return
-    new_data = pd.DataFrame([[nis, nama, jk, mat, bindo, ipa, ips]],
-                            columns=df.columns)
+    new_data = pd.DataFrame([args], columns=df.columns)
     df = pd.concat([df, new_data], ignore_index=True)
     save_data(df)
     st.success("Data siswa berhasil ditambahkan!")
@@ -88,14 +88,19 @@ if menu == "Lihat Data":
 elif menu == "Tambah Data":
     st.subheader("➕ Tambah Data Siswa")
     nis = st.text_input("NIS")
-    nama = st.text_input("Nama")
+    nama = st.text_input("Nama Lengkap")
     jk = st.selectbox("Jenis Kelamin", ["Laki-laki", "Perempuan"])
-    mat = st.number_input("Matematika", 0, 100)
-    bindo = st.number_input("Bahasa Indonesia", 0, 100)
-    ipa = st.number_input("IPA", 0, 100)
-    ips = st.number_input("IPS", 0, 100)
+    tgl_lahir = st.date_input("Tanggal Lahir")
+    kelas = st.selectbox("Kelas", ["X", "XI", "XII"])
+    jurusan = st.text_input("Jurusan")
+    alamat = st.text_area("Alamat")
+    telepon = st.text_input("Nomor Telepon Wali")
+    mat = st.number_input("Nilai Matematika", 0, 100)
+    indo = st.number_input("Nilai Bahasa Indonesia", 0, 100)
+    ipa = st.number_input("Nilai IPA", 0, 100)
+    ips = st.number_input("Nilai IPS", 0, 100)
     if st.button("Simpan"):
-        add_student(nis, nama, jk, mat, bindo, ipa, ips)
+        add_student(nis, nama, jk, str(tgl_lahir), kelas, jurusan, alamat, telepon, mat, indo, ipa, ips)
 
 # Menu Edit
 elif menu == "Edit Data":
