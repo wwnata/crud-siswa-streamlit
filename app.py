@@ -38,7 +38,11 @@ def delete_student(nis):
 
 def search_student(keyword):
     df = load_data()
-    return df[df["NIS"].astype(str).str.contains(keyword) | df["Nama"].str.contains(keyword, case=False)]
+    return df[
+    df.get("NIS", pd.Series(dtype=str)).astype(str).str.contains(keyword, na=False) |
+    df.get("Nama_Lengkap", pd.Series(dtype=str)).astype(str).str.contains(keyword, case=False, na=False)
+]
+
 
 def nilai_maks_min():
     df = load_data()
